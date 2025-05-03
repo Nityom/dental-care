@@ -8,10 +8,10 @@ const Navbar = () => {
   const closeMenu = () => setMobileMenuOpen(false);
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-[#afc9c877] backdrop-blur-md border-b border-[#afc9c8] text-[#1e1b1e] z-50 shadow-md sm:bg-transparent sm:border-none sm:backdrop-blur-md sm:bg-white">
+    <header className="fixed top-0 left-0 w-full bg-[#a8d5ba77] backdrop-blur-md border-b border-[#afc9c8] text-[#1e1b1e] z-50 shadow-md sm:bg-transparent sm:border-none sm:backdrop-blur-md sm:bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-4 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="text-xl sm:text-2xl font-bold tracking-wide">
+        <Link to="/" className="text-xl sm:text-2xl font-bold tracking-wide text-[#1e1b1e]">
           DENTO <span className="text-[#3a3a3a]">POINT</span>
         </Link>
 
@@ -49,7 +49,7 @@ const Navbar = () => {
 
       {/* Mobile Menu - Full Screen */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white backdrop-blur-md px-6 pb-6 pt-2 space-y-4 text-sm font-medium flex flex-col z-50 absolute top-0 left-0 w-full h-[100vh] transition-all duration-500 ease-in-out opacity-100">
+        <div className="md:hidden bg-[#a8d5ba77] backdrop-blur-md px-6 pb-6 pt-2 space-y-4 text-sm font-medium flex flex-col z-50 absolute top-0 left-0 w-full h-[100vh] transition-all duration-500 ease-in-out opacity-100">
           {/* Close Button (X) */}
           <button
             onClick={closeMenu}
@@ -61,10 +61,10 @@ const Navbar = () => {
 
           {/* Mobile Menu Links */}
           <div className="flex flex-col h-full justify-center items-center">
-            <Link to="/" onClick={closeMenu} className="hover:text-[#3a3a3a] transition text-4xl font-bold py-4">Home</Link>
-            <Link to="/services" onClick={closeMenu} className="hover:text-[#3a3a3a] transition text-4xl font-bold py-4">Services</Link>
-            <Link to="/about" onClick={closeMenu} className="hover:text-[#3a3a3a] transition text-4xl font-bold py-4">About Us</Link>
-            <Link to="/contact" onClick={closeMenu} className="hover:text-[#3a3a3a] transition text-4xl font-bold py-4">Contact Us</Link>
+            <Link to="/" onClick={closeMenu} className="hover:text-[#3a3a3a] transition text-4xl font-bold py-4 text-[#1e1b1e]">Home</Link>
+            <Link to="/services" onClick={closeMenu} className="hover:text-[#3a3a3a] transition text-4xl font-bold py-4 text-[#1e1b1e]">Services</Link>
+            <Link to="/about" onClick={closeMenu} className="hover:text-[#3a3a3a] transition text-4xl font-bold py-4 text-[#1e1b1e]">About Us</Link>
+            <Link to="/contact" onClick={closeMenu} className="hover:text-[#3a3a3a] transition text-4xl font-bold py-4 text-[#1e1b1e]">Contact Us</Link>
           </div>
         </div>
       )}
