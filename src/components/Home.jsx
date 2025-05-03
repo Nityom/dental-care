@@ -81,7 +81,7 @@ export default function Home() {
             )}
             
             {/* CTA Button */}
-            <button className="mt-4 sm:mt-6 px-5 py-2 sm:px-6 sm:py-2 md:px-8 md:py-3 rounded-full text-white bg-[#1e1b1e] hover:bg-transparent hover:text-[#1e1b1e] border-2 border-transparent hover:border-[#1e1b1e] transition-all duration-300 text-xs sm:text-sm md:text-base">
+            <button className="mt-8 sm:mt-6 px-5 py-2 sm:px-6 sm:py-2 md:px-8 md:py-3 rounded-full text-white bg-[#1e1b1e] hover:bg-transparent hover:text-[#1e1b1e] border-2 border-transparent hover:border-[#1e1b1e] transition-all duration-300 text-xs sm:text-sm md:text-base">
               Book appointment
             </button>
           </div>
