@@ -41,14 +41,19 @@ export default function Home() {
       {/* Main container with consistent 2% top margin */}
       <div className="w-full min-h-[95vh] h-full mt-[2%] relative overflow-hidden sm:rounded-[30px]">
         {/* NAVIGATION */}
-        <nav className="w-full h-[60px] flex items-center justify-end px-4 sm:px-6 md:px-[50px] z-[99] relative">
+        <nav className="w-full h-[60px] flex items-center justify-end px-4 sm:px-6 md:px-[50px] z-[100] relative">
           <div className="flex items-center gap-2 sm:gap-4 mt-12 sm:mt-16 md:mt-0">
-            <div className="px-3 py-1 sm:px-4 sm:py-2 mt-6 border-2 border-[#3a3a3a] rounded-full text-xs sm:text-sm md:text-[18px] hover:bg-[#3a3a3a] hover:text-white transition-all duration-200 cursor-pointer whitespace-nowrap">
-              Dental Emergency
-            </div>
-            <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-[50px] mt-6 md:h-[50px] bg-[#3a3a3a] text-white rounded-full flex items-center justify-center text-lg sm:text-xl md:text-[25px] border-2 border-[#3a3a3a] hover:bg-transparent hover:text-[#3a3a3a] transition-all duration-200 cursor-pointer">
-              <FaTooth />
-            </div>
+            {/* Conditional rendering for mobile devices */}
+            {!isMobile && (
+              <>
+                <div className="px-3 py-1 sm:px-4 sm:py-2 mt-6 border-2 border-[#3a3a3a] rounded-full text-xs sm:text-sm md:text-[18px] hover:bg-[#3a3a3a] hover:text-white transition-all duration-200 cursor-pointer whitespace-nowrap">
+                  Dental Emergency
+                </div>
+                <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-[50px] mt-6 md:h-[50px] bg-[#3a3a3a] text-white rounded-full flex items-center justify-center text-lg sm:text-xl md:text-[25px] border-2 border-[#3a3a3a] hover:bg-transparent hover:text-[#3a3a3a] transition-all duration-200 cursor-pointer">
+                  <FaTooth />
+                </div>
+              </>
+            )}
           </div>
         </nav>
 
@@ -118,8 +123,8 @@ export default function Home() {
           <ul className="flex flex-col gap-6 mt-16">
             <li className="text-xl font-medium">Home</li>
             <li className="text-xl font-medium">Services</li>
-            <li className="text-xl font-medium">About</li>
-            <li className="text-xl font-medium">Contact</li>
+            <li className="text-xl font-medium">About Us</li>
+            <li className="text-xl font-medium">Contact Us</li>
           </ul>
         </div>
       )}
