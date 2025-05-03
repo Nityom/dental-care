@@ -35,9 +35,9 @@ const ThirdPage = () => {
   };
 
   return (
-    <section className="w-full min-h-screen text-white flex items-center justify-center px-6 py-12">
+    <section className="w-full min-h-screen text-white flex items-center justify-center px-4 py-12">
       <div
-        className="w-full max-w-full bg-cover bg-center bg-no-repeat rounded-[30px] overflow-hidden p-10"
+        className="w-full bg-cover bg-center bg-no-repeat rounded-[30px] overflow-hidden p-10"
         style={{ backgroundImage: `url('../assets/back.jpg')` }}
       >
         {/* Top Section */}
@@ -69,7 +69,7 @@ const ThirdPage = () => {
               <div
                 key={index}
                 onClick={() => toggleCard(index)}
-                className={`relative w-full md:max-w-[280px] bg-opacity-90 rounded-[20px] px-6 py-8 cursor-pointer shadow-md transition-all duration-500 ease-in-out`}
+                className={`relative w-full sm:w-[320px] md:w-[300px] bg-opacity-90 rounded-[20px] px-6 py-8 cursor-pointer shadow-md transition-all duration-500 ease-in-out`}
                 style={{ backgroundColor: card.color }}
               >
                 {/* Rotating Arrow */}
