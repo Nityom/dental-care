@@ -49,7 +49,8 @@ const Navbar = () => {
 
       {/* Mobile Menu - Full Screen */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#a8d5ba77] backdrop-blur-md px-6 pb-6 pt-2 space-y-4 text-sm font-medium flex flex-col z-50 absolute top-0 left-0 w-full h-[100vh] transition-all duration-500 ease-in-out opacity-100">
+       <div className="md:hidden bg-[#a8d5ba] px-6 pb-6 pt-2 space-y-4 text-sm font-medium flex flex-col z-50 absolute top-0 left-0 w-full h-[100vh] transition-all duration-500 ease-in-out opacity-100">
+
           {/* Close Button (X) */}
           <button
             onClick={closeMenu}

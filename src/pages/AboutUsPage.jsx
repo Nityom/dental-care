@@ -2,7 +2,9 @@ import React from "react";
 import { FaTrophy } from "react-icons/fa";  // Importing the trophy icon
 import { motion } from "framer-motion";  // Ensure this line is at the top
 
+
 const AboutUsPage = () => {
+
   return (
     <div className="pt-24 pb-20 bg-[#ffffff] text-[#1e1b1e] px-6 md:px-20">
       {/* Hero Section */}

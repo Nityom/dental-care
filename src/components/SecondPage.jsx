@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SecondPage = () => {
   return (
@@ -40,9 +41,13 @@ const SecondPage = () => {
           </p>
 
           {/* Button */}
-          <button className="px-[30px] py-[12px] sm:px-[40px] sm:py-[15px] rounded-full text-[#3a3a3a] bg-transparent border-[2px] border-[#1e1b1e] hover:bg-[#1e1b1e] hover:text-white transition-all duration-200">
-            About Clinik
-          </button>
+          <Link
+  to="/about"
+  className="px-[30px] py-[12px] sm:px-[40px] sm:py-[15px] rounded-full text-[#3a3a3a] bg-transparent border-[2px] border-[#1e1b1e] hover:bg-[#1e1b1e] hover:text-white transition-all duration-200"
+>
+  About Clinik
+</Link>
+
         </div>
 
         {/* Right Section - Image */}

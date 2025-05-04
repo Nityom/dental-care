@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { FaTooth } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -46,9 +47,13 @@ export default function Home() {
             {/* Conditional rendering for mobile devices */}
             {!isMobile && (
               <>
-                <div className="px-3 py-1 sm:px-4 sm:py-2 mt-6 border-2 border-[#3a3a3a] rounded-full text-xs sm:text-sm md:text-[18px] hover:bg-[#3a3a3a] hover:text-white transition-all duration-200 cursor-pointer whitespace-nowrap">
-                  Dental Emergency
-                </div>
+               <Link
+  to="/contact"
+  className="px-3 py-1 sm:px-4 sm:py-2 mt-6 border-2 border-[#3a3a3a] rounded-full text-xs sm:text-sm md:text-[18px] hover:bg-[#3a3a3a] hover:text-white transition-all duration-200 cursor-pointer whitespace-nowrap"
+>
+  Dental Emergency
+</Link>
+
                 <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-[50px] mt-6 md:h-[50px] bg-[#3a3a3a] text-white rounded-full flex items-center justify-center text-lg sm:text-xl md:text-[25px] border-2 border-[#3a3a3a] hover:bg-transparent hover:text-[#3a3a3a] transition-all duration-200 cursor-pointer">
                   <FaTooth />
                 </div>
@@ -86,9 +91,14 @@ export default function Home() {
             )}
 
             {/* CTA Button */}
-            <button className="mt-8 sm:mt-6 px-5 py-2 sm:px-6 sm:py-2 md:px-8 md:py-3 rounded-full text-white bg-[#1e1b1e] hover:bg-transparent hover:text-[#1e1b1e] border-2 border-transparent hover:border-[#1e1b1e] transition-all duration-300 text-xs sm:text-sm md:text-base self-center">
-              Book appointment
-            </button>
+            
+            <Link
+  to="/contact"
+  className="mt-8 sm:mt-6 px-5 py-2 sm:px-6 sm:py-2 md:px-8 md:py-3 rounded-full text-white bg-[#1e1b1e] hover:bg-transparent hover:text-[#1e1b1e] border-2 border-transparent hover:border-[#1e1b1e] transition-all duration-300 text-xs sm:text-sm md:text-base self-center"
+>
+  Book appointment
+</Link>
+           
           </div>
 
           {/* MOBILE IMAGE */}

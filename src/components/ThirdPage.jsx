@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FiArrowUpRight } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 const ThirdPage = () => {
   const cards = [
@@ -54,9 +55,12 @@ const ThirdPage = () => {
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit magni facere libero,
               consectetur earum corporis non, mollitia maxime dolores voluptates est et sunt, aliquid a
             </p>
-            <button className="inline-flex items-center gap-2 border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition duration-300 self-start">
-              All Services <FiArrowUpRight className="text-lg" />
-            </button>
+            <Link to="/services">
+  <button className="inline-flex items-center gap-2 border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition duration-300 self-start">
+    All Services <FiArrowUpRight className="text-lg" />
+  </button>
+</Link>
+
           </div>
         </div>
 

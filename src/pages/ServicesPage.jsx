@@ -1,4 +1,5 @@
 import React from "react";
+import BeforeAfterSlider from "../components/BeforeAfterSlider";
 
 const services = [
   {
@@ -41,7 +42,8 @@ const ServicesPage = () => {
           Our Services
         </h1>
 
-        <div className="grid gap-16">
+        {/* Services Grid */}
+        <div className="grid gap-16 mb-20">
           {services.map((service, index) => (
             <div
               key={index}
@@ -57,12 +59,19 @@ const ServicesPage = () => {
                 />
               </div>
               <div className="w-full lg:w-1/2">
-                <h2 className="text-2xl font-bold mb-4 text-[#1e1b1e]">{service.title}</h2>
-                <p className="text-gray-700 text-base leading-relaxed">{service.desc}</p>
+                <h2 className="text-2xl font-bold mb-4 text-[#1e1b1e]">
+                  {service.title}
+                </h2>
+                <p className="text-gray-700 text-base leading-relaxed">
+                  {service.desc}
+                </p>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Slider Section */}
+        <BeforeAfterSlider />
       </div>
     </div>
   );
