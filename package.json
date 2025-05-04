@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
     "@tailwindcss/vite": "^4.1.5",
     "animejs": "^4.0.2",
     "aos": "^2.3.4",
