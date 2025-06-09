@@ -5,23 +5,39 @@ import { Link } from 'react-router-dom';
 const ThirdPage = () => {
   const cards = [
     {
-      title: "General dentistry",
+      title: "Invisible braces",
       color: "#a7aaca",
       moreInfo:
-        "General dentistry includes cleanings, X-rays, exams, fillings, and other preventative services to maintain oral health.",
+        "Experience discreet teeth straightening with our cutting-edge invisible braces, perfect for both adults and teens seeking a beautiful smile.",
+      benefits: [
+        "Virtually invisible treatment",
+        "Comfortable fit",
+        "Custom-designed aligners"
+      ]
     },
     {
-      title: "Cosmetic dentistry",
+      title: "Clear Aligner",
       color: "#b5beba",
       moreInfo:
-        "Cosmetic procedures like whitening, veneers, and bonding improve the appearance of your teeth and smile.",
+        "Our clear aligner therapy offers a modern approach to teeth straightening using custom-made, transparent aligners for gradual teeth movement.",
+      benefits: [
+        "Removable aligners",
+        "Faster results",
+        "No dietary restrictions"
+      ]
     },
     {
-      title: "Restorative dentistry",
+      title: "Invisalign Care",
       color: "#cbbe91",
       moreInfo:
-        "Restorative treatments include crowns, bridges, and dentures to repair or replace damaged teeth.",
+        "As certified Invisalign providers, we offer this globally trusted clear aligner system using advanced SmartTrack® material for predictable results.",
+      benefits: [
+        "3D treatment planning",
+        "Regular monitoring",
+        "Proven effectiveness"
+      ]
     },
+ 
   ];
 
   // Track expanded card indices
@@ -52,8 +68,9 @@ const ThirdPage = () => {
           </div>
           <div className="lg:w-1/3 flex flex-col justify-between space-y-4">
             <p className="text-sm md:text-base leading-relaxed text-white">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit magni facere libero,
-              consectetur earum corporis non, mollitia maxime dolores voluptates est et sunt, aliquid a
+              Experience advanced dental care with our comprehensive range of services. 
+  We specialize in invisible orthodontic solutions and permanent tooth replacement options, 
+  using cutting-edge technology for optimal results.
             </p>
             <Link to="/services">
   <button className="inline-flex items-center gap-2 border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition duration-300 self-start">

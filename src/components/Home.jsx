@@ -1,143 +1,86 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaTooth } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const menuBoxRef = useRef(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Toggle menu function
-  const toggleMenu = () => setMenuOpen(!menuOpen);
-
-  // Close menu function
-  const closeMenu = () => setMenuOpen(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
-    // Handle menu animation
-    if (menuBoxRef.current) {
-      menuBoxRef.current.style.transform = menuOpen
-        ? "translate(0, 0)"
-        : "translate(-100%, 0)";
-    }
-
-    // Check if mobile on initial load
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    // Set initial value
-    checkIsMobile();
-
-    // Add resize listener
+    const checkIsMobile = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", checkIsMobile);
-
-    // Cleanup
     return () => window.removeEventListener("resize", checkIsMobile);
-  }, [menuOpen]);
+  }, []);
 
   return (
-    <section id="home" className="w-full overflow-x-hidden">
-      {/* Main container with consistent 2% top margin */}
-      <div className="w-full min-h-[95vh] h-full mt-[2%] relative overflow-hidden sm:rounded-[30px]">
-        {/* NAVIGATION */}
-        <nav className="w-full h-[60px] flex items-center justify-end px-4 sm:px-6 md:px-[50px] z-[100] relative">
-          <div className="flex items-center gap-2 sm:gap-4 mt-12 sm:mt-16 md:mt-0">
-            {/* Conditional rendering for mobile devices */}
-            {!isMobile && (
-              <>
-               <Link
-  to="/contact"
-  className="px-3 py-1 sm:px-4 sm:py-2 mt-6 border-2 border-[#3a3a3a] rounded-full text-xs sm:text-sm md:text-[18px] hover:bg-[#3a3a3a] hover:text-white transition-all duration-200 cursor-pointer whitespace-nowrap"
->
-  Dental Emergency
-</Link>
-
-                <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-[50px] mt-6 md:h-[50px] bg-[#3a3a3a] text-white rounded-full flex items-center justify-center text-lg sm:text-xl md:text-[25px] border-2 border-[#3a3a3a] hover:bg-transparent hover:text-[#3a3a3a] transition-all duration-200 cursor-pointer">
-                  <FaTooth />
-                </div>
-              </>
-            )}
-          </div>
+    <section className="w-full min-h-screen bg-gradient-to-b from-white to-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 pt-20">
+        {/* Top Navigation */}
+        <nav className="flex justify-end mb-8">
+          {!isMobile && (
+            <div className="flex items-center gap-4">
+              <Link
+                to="/contact"
+                className="px-5 py-2 border-2 border-[#3a3a3a] rounded-full text-sm hover:bg-[#3a3a3a] hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
+              >
+                Dental Emergency
+              </Link>
+              <div className="w-10 h-10 bg-[#3a3a3a] text-white rounded-full flex items-center justify-center hover:bg-white hover:text-[#3a3a3a] border-2 border-[#3a3a3a] transition-all duration-300">
+                <FaTooth />
+              </div>
+            </div>
+          )}
         </nav>
 
-        {/* HERO CONTENT CONTAINER */}
-        <div className="w-full flex flex-col md:flex-row h-full">
-          {/* HERO TEXT */}
-          <div className="w-full md:w-1/2 min-h-[40vh] md:min-h-[60vh] text-[#1e1b1e] px-4 sm:px-6 md:px-[50px] py-[20px] sm:py-[30px] md:py-[40px] flex flex-col justify-between items-start relative z-10">
-            {/* Tagline */}
-            <p className="text-sm sm:text-base md:text-lg text-[#333] mb-2 font-medium tracking-wide">
-              New Delhi's Best Dental Clinic
-            </p>
+        {/* Main Content */}
+        <div className="flex flex-col md:flex-row items-center">
+          {/* Text Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="w-full md:w-1/2 space-y-6"
+          >
+            <motion.p className="text-lg text-[#3a3a3a] font-medium">
+             Bhopal's Premier Dental Clinic
+            </motion.p>
 
-            {/* Heading for Mobile */}
-            {isMobile ? (
-              <motion.h1
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="font-extrabold text-[20vw] sm:text-[18vw] leading-none tracking-tight text-center w-full"
+            <motion.h1
+              className={`font-bold ${
+                isMobile ? "text-[14vw]" : "text-[5rem]"
+              } leading-[0.9] tracking-tight`}
+            >
+              <span className="block bg-gradient-to-r from-[#1e1b1e] to-[#3a3a3a] bg-clip-text text-transparent">
+                Titanium Smiles
+              </span>
+              <span className="block bg-gradient-to-r from-[#3a3a3a] to-[#666] bg-clip-text text-transparent">
+                Dental Care
+              </span>
+            </motion.h1>
+
+            <motion.div>
+              <Link
+                to="/contact"
+                className="inline-block px-8 py-3 rounded-full text-white bg-gradient-to-r from-[#1e1b1e] to-[#3a3a3a] hover:from-[#3a3a3a] hover:to-[#1e1b1e] shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                <span className="block">Tarunam Dental</span>
-                <span className="block">Care</span>
-              </motion.h1>
-            ) : (
-              /* Heading for Desktop */
-              <h1 className="font-bold text-[clamp(3rem,10vw,6rem)] leading-none tracking-tight text-left">
-                <span className="block">Tarunam Dental</span>
-                <span className="block">Care</span>
-              </h1>
-            )}
+                Book Your Appointment
+              </Link>
+            </motion.div>
+          </motion.div>
 
-            {/* CTA Button */}
-            
-            <Link
-  to="/contact"
-  className="mt-8 sm:mt-6 px-5 py-2 sm:px-6 sm:py-2 md:px-8 md:py-3 rounded-full text-white bg-[#1e1b1e] hover:bg-transparent hover:text-[#1e1b1e] border-2 border-transparent hover:border-[#1e1b1e] transition-all duration-300 text-xs sm:text-sm md:text-base self-center"
->
-  Book appointment
-</Link>
-           
-          </div>
-
-          {/* MOBILE IMAGE */}
-          <div className="md:hidden w-full flex justify-center items-end mt-4">
+          {/* Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="w-full md:w-1/2 mt-8 md:mt-0"
+          >
             <img
               src="./assets/landing.png"
-              alt="Dental care"
-              className="h-[50vh] object-contain drop-shadow-[0_0_20px_#3a3a3a] grayscale"
+              alt="Dental care visualization"
+              className="w-full h-auto max-h-[60vh] object-contain drop-shadow-[0_0_30px_rgba(58,58,58,0.3)] grayscale  transition-all duration-500"
             />
-          </div>
-        </div>
-
-        {/* DESKTOP IMAGE SECTION */}
-        <div className="absolute inset-0 flex justify-center items-end pointer-events-none">
-          <img
-            src="./assets/landing.png"
-            alt="Dental care"
-            className="hidden md:block h-[70%] object-contain drop-shadow-[0_0_40px_#3a3a3a] grayscale"
-          />
+          </motion.div>
         </div>
       </div>
-
-      {/* MOBILE MENU (if needed) */}
-      {menuOpen && (
-        <div
-          ref={menuBoxRef}
-          className="fixed top-0 left-0 w-full h-full bg-white z-[100] p-8"
-        >
-          <button onClick={closeMenu} className="absolute top-8 right-8">
-            Close
-          </button>
-          <ul className="flex flex-col gap-6 mt-16">
-            <li className="text-xl font-medium">Home</li>
-            <li className="text-xl font-medium">Services</li>
-            <li className="text-xl font-medium">About Us</li>
-            <li className="text-xl font-medium">Contact Us</li>
-          </ul>
-        </div>
-      )}
     </section>
   );
 }

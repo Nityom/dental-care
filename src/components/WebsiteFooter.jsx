@@ -9,9 +9,9 @@ const WebsiteFooter = () => {
 
         {/* Left Side: Brand and Description */}
         <div className="md:col-span-2">
-          <h1 className="text-2xl font-bold mb-3 text-[#afc9c8]">DentoPoint</h1>
+          <h1 className="text-2xl font-bold mb-3 text-[#afc9c8]">Titanium Smiles</h1>
           <p className="text-sm text-gray-300 leading-relaxed">
-            Dental Care is a top-rated local practice specializing in cosmetic, preventative, and restorative dentistry. 
+            Titanium Smiles is a top-rated local practice specializing in cosmetic, preventative, and restorative dentistry. 
             Our expert team is committed to providing personalized care, cutting-edge treatments, and a comfortable 
             experience for every patient.
           </p>
@@ -19,10 +19,12 @@ const WebsiteFooter = () => {
           <div className="mt-6">
             <p className="font-semibold mb-2">FOLLOW US ON</p>
             <div className="flex justify-center md:justify-start gap-4 text-xl text-white">
-              <FaFacebookF />
-              <FaTwitter />
-              <FaInstagram />
-              <FaYoutube />
+              <a href="https://www.instagram.com/titaniumsmiles?igsh=MWs0OHRkeWc2eDhkag==" target="_blank" rel="noopener noreferrer">
+                <FaInstagram />
+              </a>
+              <a href="https://www.facebook.com/share/1Z1C2trRr5/" target="_blank" rel="noopener noreferrer">
+                <FaFacebookF />
+              </a>
             </div>
           </div>
         </div>
@@ -34,8 +36,9 @@ const WebsiteFooter = () => {
               <FaPhoneAlt />
             </div>
             <div className="text-left">
-              <p className="text-sm text-gray-300">Phone Number</p>
-              <p className="text-white font-medium">083402 20139</p>
+              <p className="text-sm text-gray-300">Phone Numbers</p>
+              <p className="text-white font-medium">+91 9917609177</p>
+              <p className="text-white font-medium">+91 7771970889</p>
             </div>
           </div>
 
@@ -56,7 +59,7 @@ const WebsiteFooter = () => {
             <div className="text-left">
               <p className="text-sm text-gray-300">Clinic Address</p>
               <p className="text-white font-medium">
-                B-65, Malviya Nagar, Near Max Hospital, New Delhi, India, 110017
+                E3/119, First Floor, Arera Colony, Main Road No.3, Near Gastrocare Hospital, Bhopal, M.P. 462016
               </p>
             </div>
           </div>
@@ -75,7 +78,7 @@ const WebsiteFooter = () => {
 
       {/* Footer Bottom Line */}
       <div className="text-center mt-10 border-t border-gray-600 pt-4 text-sm text-gray-400">
-        © 2025 DentoPoint. All Rights Reserved
+        © 2025 Titanium Smiles. All Rights Reserved
       </div>
     </footer>
   );

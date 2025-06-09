@@ -1,27 +1,39 @@
 import React from 'react';
-import Form from './Form'; // adjust the path based on your folder structure
+import Form from './Form';
+import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock } from 'react-icons/fa';
 
 const Footer = () => {
-  const mapLink =
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14326.664221027982!2d86.2772433!3d26.2500207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ee798a5eb8fb8d%3A0xd4a13b8246675fd3!2sJANTA%20COLLEGE%2C%20Jhanjharpur%2C%20Bihar%20847404!5e0!3m2!1sen!2sin!4v1700000000000';
+ const mapLink = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3664.542067162587!2d77.4617283753475!3d23.25299030843664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c43875c0232c1%3A0x9991260df695fada!2sSmile%20Craft%20Advanced%20Multi-speciality%20Dental%20Clinic!5e0!3m2!1sen!2sin!4v1718000000000';
+
+
+ 
 
   return (
-    <footer className="w-full bg-[#afc9c8] py-12 px-6 md:px-16 mt-16">
-      <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-        
-        {/* Left Side - Map */}
-        <div className="w-full md:w-[40%] rounded-2xl overflow-hidden h-[400px] md:h-[500px]">
-          <iframe
-            src={mapLink}
-            allowFullScreen=""
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="w-full h-full rounded-2xl shadow-md transition-transform duration-200 hover:scale-105"
-          ></iframe>
-        </div>
+    <footer className="w-full bg-gradient-to-b from-[#afc9c8] to-[#9ab5b4] py-16 px-6 md:px-16 mt-16">
+      <div className="max-w-7xl mx-auto">
+    
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-12">
+          {/* Left Side - Map */}
+          <div className="w-full lg:w-[40%]">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">Find Us Here</h2>
+            <div className="rounded-2xl overflow-hidden h-[400px] lg:h-[500px] shadow-xl">
+              <iframe
+                src={mapLink}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full rounded-2xl transition-transform duration-300 hover:scale-105"
+              ></iframe>
+            </div>
+          </div>
 
-        {/* Right Side - Form */}
-        <Form />
+          {/* Right Side - Form */}
+          <div className="w-full lg:w-[55%]">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">Get In Touch</h2>
+            <Form />
+          </div>
+        </div>
+   
       </div>
     </footer>
   );
