@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const ThirdPage = () => {
   const cards = [
     {
-      title: "Invisible braces",
+      title: "Invisible Braces",
       color: "#a7aaca",
       moreInfo:
         "Experience discreet teeth straightening with our cutting-edge invisible braces, perfect for both adults and teens seeking a beautiful smile.",
@@ -36,11 +36,9 @@ const ThirdPage = () => {
         "Regular monitoring",
         "Proven effectiveness"
       ]
-    },
- 
+    }
   ];
 
-  // Track expanded card indices
   const [expandedCards, setExpandedCards] = useState([]);
 
   const toggleCard = (index) => {
@@ -69,15 +67,14 @@ const ThirdPage = () => {
           <div className="lg:w-1/3 flex flex-col justify-between space-y-4">
             <p className="text-sm md:text-base leading-relaxed text-white">
               Experience advanced dental care with our comprehensive range of services. 
-  We specialize in invisible orthodontic solutions and permanent tooth replacement options, 
-  using cutting-edge technology for optimal results.
+              We specialize in invisible orthodontic solutions and permanent tooth replacement options, 
+              using cutting-edge technology for optimal results.
             </p>
             <Link to="/services">
-  <button className="inline-flex items-center gap-2 border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition duration-300 self-start">
-    All Services <FiArrowUpRight className="text-lg" />
-  </button>
-</Link>
-
+              <button className="inline-flex items-center gap-2 border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition duration-300 self-start">
+                All Services <FiArrowUpRight className="text-lg" />
+              </button>
+            </Link>
           </div>
         </div>
 
@@ -104,19 +101,22 @@ const ThirdPage = () => {
 
                 {/* Title */}
                 <h2 className="text-xl font-bold mb-3 leading-tight text-black">
-                  {card.title.split(" ")[0]} <br /> {card.title.split(" ")[1]}
+                  {card.title}
                 </h2>
 
                 {/* Short Description */}
                 <p className="text-sm mb-3 text-black">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed accusantium rerum facere dicta
-                  voluptatibus.
+                  {card.moreInfo}
                 </p>
 
                 <hr className="border-black mb-3" />
 
                 {/* Bullet Points */}
-                
+                <ul className="text-sm text-black list-disc list-inside space-y-1">
+                  {card.benefits.map((point, i) => (
+                    <li key={i}>{point}</li>
+                  ))}
+                </ul>
 
                 {/* Expandable More Info */}
                 <div

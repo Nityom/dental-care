@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from 'react-helmet-async';
 
 import Home from "./components/Home";
 import SecondPage from "./components/SecondPage";
@@ -19,7 +20,8 @@ import "./App.css";
 
 export default function App() {
   return (
-    <Router>
+    <HelmetProvider>
+      <Router>
      
       <Navbar />
 
@@ -43,7 +45,7 @@ export default function App() {
       </Routes>
 
       <Footer />
-      <WebsiteFooter />
-    </Router>
+      <WebsiteFooter />    </Router>
+    </HelmetProvider>
   );
 }
