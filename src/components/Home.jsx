@@ -76,7 +76,7 @@ export default function Home() {
             <img
               src="./assets/landing.png"
               alt="Dental care visualization"
-              className="w-full h-auto max-h-[80vh] object-contain drop-shadow-[0_0_30px_rgba(58,58,58,0.3)] grayscale  transition-all duration-500"
+              className="w-full h-auto max-h-[90vh] object-contain drop-shadow-[0_0_30px_rgba(58,58,58,0.3)] grayscale  transition-all duration-500"
             />
           </motion.div>
         </div>
