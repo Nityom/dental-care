@@ -14,12 +14,12 @@ export default defineConfig({
       },
       optipng: {
         optimizationLevel: 7,
-      },
-      mozjpeg: {
-        quality: 80,
+      },      mozjpeg: {
+        quality: 65,
+        progressive: true,
       },
       pngquant: {
-        quality: [0.8, 0.9],
+        quality: [0.65, 0.8],
         speed: 4,
       },
       svgo: {
@@ -32,22 +32,29 @@ export default defineConfig({
             active: false,
           },
         ],
-      },
-      webp: {
-        quality: 80,
+      },      webp: {
+        quality: 75,
+        lossless: false,
+        method: 6,
       },
     }),
   ],
   build: {
-    cssCodeSplit: true,
-    rollupOptions: {
+    cssCodeSplit: true,    rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
           utils: ['react-helmet-async', 'react-lazy-load-image-component'],
         },
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name.endsWith('.jpg') || assetInfo.name.endsWith('.png')) {
+            return 'assets/images/[name]-[hash][extname]'
+          }
+          return 'assets/[name]-[hash][extname]'
+        },
       },
     },
+    assetsInlineLimit: 4096,
     chunkSizeWarningLimit: 1000,
   },
 })
