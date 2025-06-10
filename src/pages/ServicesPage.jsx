@@ -106,13 +106,13 @@ const ServicesPage = () => {
               }`}
             >
               <div className="w-full lg:w-1/2 group">
-                <div className="relative overflow-hidden md:rounded-xl">
+                <div className="relative overflow-hidden rounded-3xl"> {/* Changed rounded-xl to rounded-3xl */}
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-[300px] md:h-[400px] object-cover transform transition-transform duration-300 group-hover:scale-105 md:rounded-xl md:shadow-lg"
+                    className="w-full h-[300px] md:h-[400px] object-cover transform transition-transform duration-300 group-hover:scale-105 rounded-3xl md:shadow-lg" /* Changed rounded-xl to rounded-3xl */
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" /* Added rounded-3xl here too *//>
                 </div>
               </div>
               <div className="w-full lg:w-1/2">
