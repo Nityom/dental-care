@@ -1,51 +1,59 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider } from "react-helmet-async";
 
-import Home from "./components/Home";
-import SecondPage from "./components/SecondPage";
-import ThirdPage from "./components/ThirdPage";
-import FourthPage from "./components/FourthPage";
-import FifthPage from "./components/FifthPage";
-import Footer from "./components/Footer";
-import TeamSection from "./components/TeamsSection";
-import WebsiteFooter from "./components/WebsiteFooter";
+import LoadingSpinner from "./components/LoadingSpinner";
 import Navbar from "./components/Navbar";
-import ServicesPage from "./pages/ServicesPage";
-
-import AboutUsPage from "./pages/AboutUsPage";
-import ContactUsPage from "./pages/ContactUsPage";
+import Footer from "./components/Footer";
+import WebsiteFooter from "./components/WebsiteFooter";
+import ScrollToTopButton from "./components/ScrollToTopButton";
+import ScrollToTop from "./components/ScrollToTop";
 
 import "./App.css";
 
+// Lazy-loaded pages and sections
+const Home = lazy(() => import("./components/Home"));
+const SecondPage = lazy(() => import("./components/SecondPage"));
+const ThirdPage = lazy(() => import("./components/ThirdPage"));
+const FourthPage = lazy(() => import("./components/FourthPage"));
+const FifthPage = lazy(() => import("./components/FifthPage"));
+const TeamSection = lazy(() => import("./components/TeamsSection"));
+
+const ServicesPage = lazy(() => import("./pages/ServicesPage"));
+const AboutUsPage = lazy(() => import("./pages/AboutUsPage"));
+const ContactUsPage = lazy(() => import("./pages/ContactUsPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
+
 export default function App() {
-  return (
-    <HelmetProvider>
+  return (    <HelmetProvider>
       <Router>
-     
-      <Navbar />
-
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Home />
-              <SecondPage />
-              <ThirdPage />
-              <TeamSection />
-              <FourthPage />
-              <FifthPage />
-            </>
-          }
-        />
-        <Route path="/services" element={<ServicesPage />} />
-        <Route path="/about" element={<AboutUsPage />} />
-        <Route path="/contact" element={<ContactUsPage />} />
-      </Routes>
-
-      <Footer />
-      <WebsiteFooter />    </Router>
+        <ScrollToTop />
+        <Navbar />
+        <Suspense fallback={<LoadingSpinner />}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Home />
+                  <SecondPage />
+                  <ThirdPage />
+                  <TeamSection />
+                  <FourthPage />
+                  <FifthPage />
+                </>
+              }
+            />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/about" element={<AboutUsPage />} />
+            <Route path="/contact" element={<ContactUsPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+        <ScrollToTopButton /> {/* ⬅️ Scroll to top button added */}
+        <Footer />
+        <WebsiteFooter />
+      </Router>
     </HelmetProvider>
   );
 }

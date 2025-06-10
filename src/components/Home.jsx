@@ -16,9 +16,9 @@ export default function Home() {
     <section className="w-full min-h-screen bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 pt-20">
         {/* Top Navigation */}
-        <nav className="flex justify-end mb-8">
+        <nav className="flex justify-end mb-16"> {/* Changed mb-8 to mb-16 for more space */}
           {!isMobile && (
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 mt-4"> {/* Added mt-4 for top margin */}
               <Link
                 to="/contact"
                 className="px-5 py-2 border-2 border-[#3a3a3a] rounded-full text-sm hover:bg-[#3a3a3a] hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
@@ -76,7 +76,7 @@ export default function Home() {
             <img
               src="./assets/landing.png"
               alt="Dental care visualization"
-              className="w-full h-auto max-h-[60vh] object-contain drop-shadow-[0_0_30px_rgba(58,58,58,0.3)] grayscale  transition-all duration-500"
+              className="w-full h-auto max-h-[80vh] object-contain drop-shadow-[0_0_30px_rgba(58,58,58,0.3)] grayscale  transition-all duration-500"
             />
           </motion.div>
         </div>
