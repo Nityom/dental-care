@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../assets/logo.png';  // Add this import
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -11,7 +12,12 @@ const Navbar = () => {
     <header className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-lg border-b border-white/20 text-[#1e1b1e] z-50 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-5 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="text-2xl sm:text-3xl font-bold tracking-tight text-[#1e1b1e] hover:opacity-80 transition-all duration-300">
+        <Link to="/" className="flex items-center gap-2 text-2xl sm:text-3xl font-bold tracking-tight text-[#1e1b1e] hover:opacity-80 transition-all duration-300">
+          <img 
+            src={logo} 
+            alt="Titanium Smiles Logo" 
+            className="h-10 w-auto grayscale"
+          />
           Titanium <span className="bg-gradient-to-r from-[#3a3a3a] to-[#666] bg-clip-text text-transparent">Smiles</span>
         </Link>
 

@@ -9,7 +9,16 @@ const WebsiteFooter = () => {
 
         {/* Left Side: Brand and Description */}
         <div className="md:col-span-2">
-          <h1 className="text-2xl font-bold mb-3 text-[#afc9c8]">Titanium Smiles</h1>
+          <div className="flex flex-col items-center md:items-start gap-4 mb-6">
+
+            <img 
+              src="../assets/logo.png" 
+              alt="Titanium Smiles Logo" 
+              className="h-20 w-auto filter grayscale object-contain"
+            />
+
+            <h1 className="text-2xl font-bold text-[#afc9c8]">Titanium Smiles</h1>
+          </div>
           <p className="text-sm text-gray-300 leading-relaxed">
             Titanium Smiles is a top-rated local practice specializing in cosmetic, preventative, and restorative dentistry. 
             Our expert team is committed to providing personalized care, cutting-edge treatments, and a comfortable 
@@ -48,7 +57,7 @@ const WebsiteFooter = () => {
             </div>
             <div className="text-left">
               <p className="text-sm text-gray-300">Open Hour</p>
-              <p className="text-white font-medium">09:00 AM - 18:00 PM</p>
+              <p className="text-white font-medium">10:00 AM - 8:00 PM</p>
             </div>
           </div>
 
@@ -69,8 +78,15 @@ const WebsiteFooter = () => {
               <FaStar />
             </div>
             <div className="text-left">
-              <p className="text-sm text-gray-300">Write A Review</p>
-              <p className="text-white font-medium">Share Your Experience</p>
+              <a 
+                href="https://search.google.com/local/writereview?placeid=ChIJwTICXIdDfDkR2vqV9g0mkZk"
+                target="_blank"
+                rel="noopener noreferrer"
+               
+              >
+                <p className="text-sm text-gray-300">Write A Review</p>
+                <p className="text-white font-medium">Share Your Experience</p>
+              </a>
             </div>
           </div>
         </div>

@@ -11,7 +11,7 @@ const SecondPage = () => {
   ];
 
   return (
-    <section className="bg-gradient-to-b from-white to-gray-50 pb-20">
+    <section className="bg-gradient-to-b from-white to-gray-50 pt-10 pb-20">
       <div className="max-w-7xl mx-auto">
         <div className="w-full flex flex-col md:flex-row items-center justify-between gap-10 px-4 sm:px-8 md:px-12 overflow-hidden">
           {/* Left Section */}

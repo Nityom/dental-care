@@ -40,7 +40,7 @@ const ContactUsPage = () => {
           </div>
           <div>
             <h3 className="text-xl font-semibold mb-2 text-gray-800">Clinic Hours</h3>
-            <p className="text-gray-600">Monday - Saturday: 10:00 AM – 7:00 PM<br />Sunday: By Appointment Only</p>
+            <p className="text-gray-600">Monday - Sunday: 10:00 AM – 8:00 PM</p>
           </div>
         </div>
       </div>

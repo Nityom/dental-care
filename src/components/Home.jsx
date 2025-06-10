@@ -33,26 +33,35 @@ export default function Home() {
         </nav>
 
         {/* Main Content */}
-        <div className="flex flex-col md:flex-row items-center">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
           {/* Text Content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="w-full md:w-1/2 space-y-6"
+            className="w-full md:w-1/2 space-y-6 flex flex-col items-center md:items-start"
           >
-            <motion.p className="text-lg text-[#3a3a3a] font-medium">
+            <motion.p className="text-lg text-[#3a3a3a] font-medium text-center md:text-left">
              Bhopal's Premier Dental Clinic
             </motion.p>
 
+            <div className="flex justify-center md:justify-start mb-4">
+              <img 
+                src="../assets/logo.png" 
+                alt="Titanium Smiles Logo" 
+                className="h-20 w-auto filter grayscale object-contain"
+              />
+            </div>
+
             <motion.h1
               className={`font-bold ${
-                isMobile ? "text-[14vw]" : "text-[5rem]"
-              } leading-[0.9] tracking-tight`}
+                isMobile ? "text-[2rem]" : "text-[4rem]"
+              } leading-[1.2] tracking-tight text-center md:text-left`}
             >
-              <span className="block bg-gradient-to-r from-[#1e1b1e] to-[#3a3a3a] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#1e1b1e] via-[#3a3a3a] to-[#666] bg-clip-text text-transparent inline-block">
                 Titanium Smiles
               </span>
-              <span className="block bg-gradient-to-r from-[#3a3a3a] to-[#666] bg-clip-text text-transparent">
+              <br className={isMobile ? "block" : "hidden"} />
+              <span className="bg-gradient-to-r from-[#1e1b1e] via-[#3a3a3a] to-[#666] bg-clip-text text-transparent inline-block">
                 Dental Care
               </span>
             </motion.h1>
