@@ -116,11 +116,7 @@ const ThirdPage = () => {
                 <hr className="border-black mb-3" />
 
                 {/* Bullet Points */}
-                <ul className="text-sm text-black list-disc list-inside space-y-1">
-                  <li>Lorem ipsum dolor sit amet.</li>
-                  <li>Lorem, ipsum.</li>
-                  <li>Lorem ipsum dolor sit amet consectetur.</li>
-                </ul>
+                
 
                 {/* Expandable More Info */}
                 <div
