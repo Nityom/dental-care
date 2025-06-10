@@ -2,36 +2,41 @@ import React, { useState } from 'react';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 
 const FifthPage = () => {
-  const testimonials = [
-    {
-      name: "Rajesh Kumar",
-      role: "Orthodontic Patient",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
-      background: "bg-[#e8d8bd]",
-      comment: "Got my Invisalign treatment done here. Dr. Tarun and his team are extremely professional and caring. The results are amazing!"
-    },
-    {
-      name: "Priya Sharma",
-      role: "Clear Aligner Patient",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-      background: "bg-white",
-      comment: "Best dental care experience! The invisible braces treatment was comfortable and the staff was very supportive throughout."
-    },
-    {
-      name: "Amit Verma",
-      role: "Dental Patient",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
-      background: "bg-white",
-      comment: "State-of-the-art facility with excellent care. Dr. Sindhuja's expertise in cosmetic dentistry is remarkable."
-    },
-    {
-      name: "Meera Patel",
-      role: "Braces Patient",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-      background: "bg-[#e8d8bd]",
-      comment: "Wonderful experience with the orthodontic treatment. The team is highly skilled and the results exceeded my expectations!"
-    }
-  ];
+const testimonials = [
+  {
+    name: "Rajesh Kumar",
+    role: "Orthodontic Patient",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
+    background: "bg-[#e8d8bd]",
+    comment:
+      "Absolutely amazing experience from the first consultation to the final result! The clinic maintained a professional yet friendly environment throughout. The orthodontic team explained each step clearly and made me feel comfortable. My braces journey was smooth, appointments were always on time, and now I have a smile I’m genuinely proud of. Highly recommended for anyone seeking expert orthodontic care!"
+  },
+  {
+    name: "Priya Sharma",
+    role: "Clear Aligner Patient",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+    background: "bg-white",
+    comment:
+      "This clinic made my aligner treatment an enjoyable and seamless process. The invisible braces were perfect for my lifestyle, and I appreciated how attentive the staff were during each check-up. Every question I had was answered patiently, and I was kept informed about my progress regularly. The results are phenomenal—I barely noticed I was wearing aligners and yet saw visible improvement every week!"
+  },
+  {
+    name: "Amit Verma",
+    role: "Dental Patient",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
+    background: "bg-white",
+    comment:
+      "The clinic offers outstanding dental services. I initially visited for a routine check-up but ended up opting for cosmetic improvements as well. Dr. Sindhuja provided detailed consultations and tailored the treatment plan to suit my goals. The equipment is modern, the hygiene standards are excellent, and the staff made me feel at ease every step of the way. The transformation in my smile has boosted my confidence immensely!"
+  },
+  {
+    name: "Meera Patel",
+    role: "Braces Patient",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+    background: "bg-[#e8d8bd]",
+    comment:
+      "Getting braces as an adult was a tough decision, but this clinic made the journey worth it. The orthodontists were skilled, compassionate, and always listened to my concerns. Each visit was smooth, and the support I received throughout the treatment was commendable. I’m thrilled with the outcome—it’s one of the best decisions I’ve made for my oral health and self-esteem!"
+  }
+];
+
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const prev = () => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
@@ -41,7 +46,7 @@ const FifthPage = () => {
     <section>
       <div className="w-full min-h-screen flex items-center justify-center py-4 sm:py-8">
         <div
-          className="w-[97%] min-h-[90vh] bg-none sm:bg-[url('/assets/back.jpg')] bg-cover bg-center bg-no-repeat rounded-lg md:rounded-[30px] overflow-hidden relative"
+          className="w-[97%] min-h-[90vh] bg-none sm:bg-[url('/assets/back.jpg')] bg-cover bg-center bg-no-repeat rounded-lg md:rounded-[30px] overflow-hidden relative pb-6"
         >
           {/* Overlay */}
           <div className="hidden sm:block absolute inset-0 bg-black/30 backdrop-blur-[2px]"></div>

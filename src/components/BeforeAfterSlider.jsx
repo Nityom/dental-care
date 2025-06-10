@@ -10,9 +10,7 @@ import afterImg from "../assets/teeth-clean.webp";
 const BeforeAfterSlider = () => {
   return (
     <div className="w-full px-4 py-12 bg-[#e9f6f6]">
-      <h2 className="text-3xl font-bold text-center text-[#1e1b1e] mb-8">
-        Before and After Effect
-      </h2>
+    
 
       <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
         <ReactCompareSlider

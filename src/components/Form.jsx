@@ -5,7 +5,7 @@ const Form = () => {
     <div className="w-full max-w-xl mx-auto">
       <h1 className="text-3xl font-bold text-[#1e1b1e] mb-1 text-center">Book Online</h1>
       <p className="text-sm text-gray-700 mb-6 text-center">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, vitae.
+       Book your orthodontic visit online—fast, easy, and professional care.
       </p>
 
       <form className="space-y-4">
