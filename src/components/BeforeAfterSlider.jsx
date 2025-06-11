@@ -9,7 +9,7 @@ import afterImg from "../assets/teeth-clean.webp";
 
 const BeforeAfterSlider = () => {
   return (
-    <div className="w-full px-4 py-12 bg-[#e9f6f6]">
+    <div className="w-full px-4 py-12 bg-[#a7aaca] rounded-2xl shadow-lg">
     
 
       <div style={{ maxWidth: "1000px", margin: "0 auto" }}>

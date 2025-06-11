@@ -16,7 +16,7 @@ const TeamSection = () => {
       name: "Dr. Sindhuja Pandey",
       title: "BDS, PG Diploma in Facial Cosmetology",
       specialization: "Cosmetic & General Dentistry",
-      experience: "12+ Years Experience",
+      experience: "7+ Years Experience",
       img: doctor2,
     },
   ];

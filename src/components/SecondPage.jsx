@@ -94,7 +94,7 @@ const SecondPage = () => {
           >
             <div className="w-full h-full rounded-[40px] overflow-hidden shadow-2xl relative group">
               <img
-                src="./assets/medical.png"
+                src="./assets/dental-chair.jpg"
                 alt="Medical illustration"
                 className="w-full h-full object-cover transition-transform duration-700 "
               />

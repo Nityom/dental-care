@@ -96,7 +96,7 @@ const AboutUsPage = () => {
       </section>
 
       {/* Mission Section */}
-      <section className="bg-[#e9f6f6] md:rounded-xl p-6 md:p-16 text-center mb-20">
+      <section className="bg-[#a7aaca] md:rounded-xl p-6 md:p-16 text-center mb-20">
         <motion.div className="mb-8">
           <img
             src={aboutImage4}
@@ -129,7 +129,7 @@ const AboutUsPage = () => {
 
       {/* Awards Section */}
       <section className="relative mb-20">
-        <div className="absolute inset-0 bg-[#AFC9C8] md:rounded-xl opacity-95"></div>
+        <div className="absolute inset-0 bg-[#a7aaca] md:rounded-xl opacity-95"></div>
         <motion.div className="relative px-4 md:px-12 py-12 md:py-16">
           <motion.h2
             variants={fadeInUp}
@@ -164,7 +164,7 @@ const AboutUsPage = () => {
       </section>
 
       {/* FAQs Section */}
-      <section className="bg-[#AFC9C8]/20 md:rounded-xl px-4 md:px-12 py-12 md:py-16">
+      <section className="bg-[#a7aaca]/20 md:rounded-xl px-4 md:px-12 py-12 md:py-16">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

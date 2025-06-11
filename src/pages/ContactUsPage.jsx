@@ -20,7 +20,7 @@ const ContactUsPage = () => {
         </div>
 
         {/* Contact Info */}
-        <div className="bg-[#afc9c8] p-6 md:p-10 md:rounded-2xl md:shadow-md flex flex-col justify-center space-y-6 mt-0">
+        <div className="bg-[#a7aaca`] p-6 md:p-10 md:rounded-2xl md:shadow-md flex flex-col justify-center space-y-6 mt-0">
           <div>
             <h3 className="text-xl font-semibold mb-2 text-gray-800">Clinic Address</h3>
             <p className="text-gray-600">

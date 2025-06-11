@@ -3,12 +3,12 @@ import { motion } from "framer-motion";
 import BeforeAfterSlider from "../components/BeforeAfterSlider";
 
 // Import service images
-import invisibleBracesImg from "../assets/services/invisible-braces.png";
+import invisibleBracesImg from "../assets/services/invisible-braces.jpg";
 import clearAlignersImg from "../assets/services/clear-aligners.png";
-import dentalImplantImg from "../assets/services/dental-implant.jpg";
+import dentalImplantImg from "../assets/services/dental-implant.png";
 import rootCanalImg from "../assets/services/root-canal-treatment.png";
 import laminatesImg from "../assets/services/laminates.jpg";
-import cleaningImg from "../assets/services/teeth-cleaning.jpg";
+import cleaningImg from "../assets/services/teeth-cleaning.png";
 import denturesImg from "../assets/services/dentures.jpg";
 import crownsImg from "../assets/services/crowns-and-bridges.png";
 import whiteningImg from "../assets/services/tooth-whitening.png";
