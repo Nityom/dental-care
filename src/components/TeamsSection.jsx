@@ -1,5 +1,5 @@
 import React from 'react';
-import doctor1 from '../assets/doctors/doctor1.png';
+import doctor1 from '../assets/doctors/doctor1.jpg';
 import doctor2 from '../assets/doctors/doctor2.jpg';
 import { motion } from 'framer-motion';
 
