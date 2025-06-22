@@ -3,17 +3,17 @@
   <style type="text/css">
    <![CDATA[
     .str2 {stroke:#EAB148;stroke-width:69.44;stroke-miterlimit:2.61313}
-    .str1 {stroke:#1D3461;stroke-width:69.44;stroke-linecap:round;stroke-miterlimit:2.61313}
     .str0 {stroke:#EAB148;stroke-width:69.44;stroke-linecap:round;stroke-miterlimit:2.61313}
+    .str1 {stroke:white;stroke-width:69.44;stroke-linecap:round;stroke-miterlimit:2.61313}
     .fil0 {fill:none}
-    .fil2 {fill:#1D3461}
+    .fil2 {fill:white}
     .fil1 {fill:white}
    ]]>
   </style>
  </defs>
  <g id="Layer_x0020_1">
   <metadata id="CorelCorpID_0Corel-Layer"/>
-  <g id="_2052699381808">
+  <g id="_2052696060624">
    <path class="fil0 str0" d="M3812.86 3584.72c-252.48,-80.6 -594.7,-476.44 -841.2,-239.82 -197,189.1 -73.42,552.17 284.86,605.04 625.43,92.29 923.48,-10.69 1410.93,-169.23"/>
    <path class="fil0 str1" d="M3780 3445.94c714.54,-561.74 925.4,445.47 416.33,1122.4 -153,177.88 -327.38,142.21 -348.32,-48.17 -23.05,-209.54 -37.91,-324.38 -155.67,-321.9 -101.29,2.13 -164.92,51.87 -192.33,250.77 -76.98,558.42 -482.44,-42.75 -589.2,-440.68"/>
    <rect class="fil1 str2" x="3400.39" y="3834.27" width="138.78" height="253.21" rx="41.39" ry="41.39"/>

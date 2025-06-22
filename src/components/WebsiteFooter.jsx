@@ -12,9 +12,9 @@ const WebsiteFooter = () => {
           <div className="flex flex-col items-center md:items-start gap-4 mb-6">
 
             <img 
-              src="../assets/logo.png" 
+              src="../assets/footer.svg" 
               alt="Titanium Smiles Logo" 
-              className="h-20 w-auto filter grayscale object-contain"
+              className="h-20 w-auto  object-contain"
             />
 
             <h1 className="text-2xl font-bold text-[#afc9c8]">Titanium Smiles</h1>
