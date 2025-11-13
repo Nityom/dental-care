@@ -58,7 +58,10 @@ const Form = () => {
 
   const validateForm = () => {
     let newErrors = {};
-    const requiredFields = ['name', 'email', 'phone', 'doctor', 'date', 'time', 'dental_problem'];
+    const requiredFields = [
+      'name', 'email', 'phone', 'doctor', 'date', 'time', 'dental_problem'
+    ];
+
     requiredFields.forEach((field) => {
       if (!formData[field]) newErrors[field] = `${field} is required`;
     });
@@ -69,7 +72,6 @@ const Form = () => {
     if (formData.phone && !/^\d{10}$/.test(formData.phone)) {
       newErrors.phone = "Phone must be 10 digits";
     }
-    // Add validation for booked slots
     if (formData.time && bookedSlots.includes(formData.time)) {
       newErrors.time = "This time slot is already booked";
     }
@@ -83,33 +85,39 @@ const Form = () => {
     if (!validateForm()) return;
 
     setIsSubmitting(true);
+
     try {
-      // Insert into Supabase
       const { error } = await supabase.from("appointments").insert([{ ...formData }]);
       if (error) throw error;
 
-      // Format WhatsApp message
-      const whatsappMessage = `*Appointment Booking Details*
- Doctor: ${formData.doctor}
- Patient Name: ${formData.name}
- Email: ${formData.email}
- Phone: ${formData.phone}
- Date: ${formData.date}
- Time: ${formData.time}
- Dental Problem: ${formData.dental_problem}`;
+      const whatsappMessage = `*Appointment Booking Details*\nDoctor: ${formData.doctor}\nPatient Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nDate: ${formData.date}\nTime: ${formData.time}\nDental Problem: ${formData.dental_problem}`;
 
       const phoneNumber = "917771970889";
       const encodedMessage = encodeURIComponent(whatsappMessage);
-      window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+      
+      // ✅ iPhone-safe WhatsApp URL
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
 
+      // iOS does NOT allow window.open; use direct redirect
+      window.location.href = whatsappUrl;
+
+      // Fallback for iPhone when opened inside in-app browsers
+      setTimeout(() => {
+        alert("If WhatsApp did not open, please tap the three dots (•••) and select 'Open in Safari'.");
+      }, 1500);
+
+      // Reset form
       setFormData({
         name: "", email: "", phone: "", doctor: "", date: "", time: "", dental_problem: ""
       });
+
       alert("Appointment request sent successfully!");
+
     } catch (error) {
       console.error("Submission error:", error);
       alert("Error sending appointment request.");
     }
+
     setIsSubmitting(false);
   };
 
@@ -128,6 +136,9 @@ const Form = () => {
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
+
+        {/* Inputs remain unchanged ... */}
+
         {/* Name */}
         <div className="flex flex-col">
           <label htmlFor="name" className="mb-1 font-medium text-sm">Name*</label>
@@ -154,7 +165,7 @@ const Form = () => {
 
         {/* Doctor */}
         <div className="flex flex-col">
-          <label htmlFor="doctor" className="mb-1 font-medium text-sm">Select Doctor*</label>
+          <label className="mb-1 font-medium text-sm">Select Doctor*</label>
           <select name="doctor" value={formData.doctor} onChange={handleChange}
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3a3a3a]">
             <option value="">Select a Doctor</option>
@@ -167,7 +178,7 @@ const Form = () => {
 
         {/* Dental Problem */}
         <div className="flex flex-col">
-          <label htmlFor="dental_problem" className="mb-1 font-medium text-sm">Select Dental Problem*</label>
+          <label className="mb-1 font-medium text-sm">Select Dental Problem*</label>
           <select name="dental_problem" value={formData.dental_problem} onChange={handleChange}
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3a3a3a]">
             <option value="">Select a Dental Problem</option>
@@ -181,7 +192,7 @@ const Form = () => {
         {/* Date & Time */}
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex flex-col w-full">
-            <label htmlFor="date" className="mb-1 font-medium text-sm">Date*</label>
+            <label className="mb-1 font-medium text-sm">Date*</label>
             <input type="date" name="date" value={formData.date}
               min={getTodayDate()} max={getMaxDate()} onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3a3a3a]" />
@@ -189,21 +200,13 @@ const Form = () => {
           </div>
 
           <div className="flex flex-col w-full">
-            <label htmlFor="time" className="mb-1 font-medium text-sm">Time*</label>
-            <select 
-              name="time" 
-              value={formData.time} 
-              onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3a3a3a]"
-            >
+            <label className="mb-1 font-medium text-sm">Time*</label>
+            <select name="time" value={formData.time} onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3a3a3a]">
               <option value="">Select a Time</option>
               {timeSlots.map((slot, index) => (
-                <option 
-                  key={index} 
-                  value={slot}
-                  disabled={bookedSlots.includes(slot)}
-                >
-                  {slot} {bookedSlots.includes(slot) ? '(Booked)' : ''}
+                <option key={index} value={slot} disabled={bookedSlots.includes(slot)}>
+                  {slot} {bookedSlots.includes(slot) ? "(Booked)" : ""}
                 </option>
               ))}
             </select>
@@ -219,8 +222,8 @@ const Form = () => {
           disabled={isSubmitting}
           className={`w-full py-2 font-medium rounded-md transition-all duration-300 border-2 ${
             isSubmitting
-              ? 'bg-gray-400 text-white cursor-not-allowed'
-              : 'bg-[#1e1b1e] text-white hover:bg-transparent hover:text-[#1e1b1e] hover:border-[#1e1b1e]'
+              ? "bg-gray-400 text-white cursor-not-allowed"
+              : "bg-[#1e1b1e] text-white hover:bg-transparent hover:text-[#1e1b1e] hover:border-[#1e1b1e]"
           }`}
         >
           {isSubmitting ? "Booking..." : "Book Appointment"}
