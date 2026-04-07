@@ -22,6 +22,7 @@ const TeamSection = lazy(() => import("./components/TeamsSection"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
 const AboutUsPage = lazy(() => import("./pages/AboutUsPage"));
 const ContactUsPage = lazy(() => import("./pages/ContactUsPage"));
+const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 export default function App() {
@@ -45,6 +46,7 @@ export default function App() {
               }
             />
             <Route path="/services" element={<ServicesPage />} />
+            <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/about" element={<AboutUsPage />} />
             <Route path="/contact" element={<ContactUsPage />} />
             <Route path="*" element={<NotFoundPage />} />
