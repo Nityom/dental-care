@@ -169,7 +169,7 @@ const GalleryPage = () => {
                   <button
                     type="button"
                     onClick={() => setSelectedImageIndex(imageFiles.indexOf(item.file))}
-                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-6 py-3 rounded-full bg-white/90 text-[#16b6bd] font-semibold tracking-wider uppercase text-sm hover:bg-white transition"
+                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-6 py-3 rounded-full bg-white/90 text-[#3a3a3a] font-semibold tracking-wider uppercase text-sm hover:bg-white transition"
                   >
                     View Image
                   </button>
