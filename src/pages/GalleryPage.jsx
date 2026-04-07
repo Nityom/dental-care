@@ -77,6 +77,16 @@ const treatmentCases = [
 
 const GalleryPage = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+  const [loadedImages, setLoadedImages] = useState({});
+  const [loadedVideos, setLoadedVideos] = useState({});
+
+  const markImageLoaded = (key) => {
+    setLoadedImages((current) => ({ ...current, [key]: true }));
+  };
+
+  const markVideoLoaded = (key) => {
+    setLoadedVideos((current) => ({ ...current, [key]: true }));
+  };
 
   const closeLightbox = () => setSelectedImageIndex(null);
   const showPreviousImage = () => {
@@ -150,11 +160,17 @@ const GalleryPage = () => {
                 className="bg-white rounded-[28px] shadow-lg overflow-hidden border border-black/5"
               >
                 <div className="relative h-[300px] md:h-[320px] overflow-hidden">
+                  {!loadedImages[item.file] && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200 animate-pulse" />
+                  )}
                   <img
                     src={`/Images/${item.file}`}
                     alt={`${item.title} before and after`}
                     loading="lazy"
-                    className="w-full h-full object-cover"
+                    onLoad={() => markImageLoaded(item.file)}
+                    className={`w-full h-full object-cover transition-opacity duration-300 ${
+                      loadedImages[item.file] ? "opacity-100" : "opacity-0"
+                    }`}
                   />
 
                   <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
@@ -206,13 +222,19 @@ const GalleryPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.04 }}
-                className="overflow-hidden rounded-2xl shadow-md bg-white text-left focus:outline-none focus:ring-2 focus:ring-[#3a3a3a]"
+                className="relative overflow-hidden rounded-2xl shadow-md bg-white text-left focus:outline-none focus:ring-2 focus:ring-[#3a3a3a]"
               >
+                {!loadedImages[file] && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200 animate-pulse" />
+                )}
                 <img
                   src={`/Images/${file}`}
                   alt={`Gallery item ${index + 1}`}
                   loading="lazy"
-                  className="w-full h-[360px] object-cover transition-transform duration-300 hover:scale-105 cursor-zoom-in"
+                  onLoad={() => markImageLoaded(file)}
+                  className={`w-full h-[360px] object-cover transition-transform duration-300 hover:scale-105 cursor-zoom-in ${
+                    loadedImages[file] ? "opacity-100" : "opacity-0"
+                  }`}
                 />
               </motion.button>
             ))}
@@ -236,8 +258,11 @@ const GalleryPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="overflow-hidden rounded-2xl shadow-md bg-black"
+                className="relative overflow-hidden rounded-2xl shadow-md bg-black"
               >
+                {!loadedVideos[file] && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 animate-pulse" />
+                )}
                 <video
                   src={`/Images/${file}`}
                   controls
@@ -246,7 +271,10 @@ const GalleryPage = () => {
                   loop
                   playsInline
                   preload="auto"
-                  className="w-full h-[360px] object-cover"
+                  onLoadedData={() => markVideoLoaded(file)}
+                  className={`w-full h-[360px] object-cover transition-opacity duration-300 ${
+                    loadedVideos[file] ? "opacity-100" : "opacity-0"
+                  }`}
                 />
               </motion.div>
             ))}
