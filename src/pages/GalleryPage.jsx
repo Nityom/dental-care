@@ -9,8 +9,8 @@ const imageFiles = [
   "5image.jpeg",
   "6image.jpeg",
   "7image.jpeg",
-  "Image-13.jpeg",
-  "Image-14.jpeg",
+  "Image-13.png",
+  "Image-14.png",
   "Patient-1.png",
   "Patient-2.png",
   "Patient-3.png",
@@ -20,23 +20,23 @@ const imageFiles = [
 
 const videoFiles = ["8image.mp4", "9image.mp4", "10image.mp4", "11image.mp4", "12image.mp4"];
 const photoFiles = imageFiles.filter(
-  (file) => !file.startsWith("Patient-") && file !== "Image-13.jpeg" && file !== "Image-14.jpeg"
+  (file) => !file.startsWith("Patient-") && file !== "Image-13.png" && file !== "Image-14.png"
 );
 
 const treatmentCases = [
   {
-    file: "Image-13.jpeg",
+    file: "Image-13.png",
     category: "Prosthetics",
     title: "Complete Dentures",
     description:
       "Complete denture rehabilitation to restore missing teeth, support facial profile, and improve day-to-day chewing comfort.",
   },
   {
-    file: "Image-14.jpeg",
+    file: "Image-14.png",
     category: "Prosthetics",
-    title: "Complete Dentures",
+    title: "Smile Rehabilitation",
     description:
-      "Complete denture rehabilitation to restore missing teeth, support facial profile, and improve day-to-day chewing comfort.",
+      "Customized prosthetic solutions to restore missing teeth, enhance smile aesthetics, and improve oral function for a confident new smile.",
   },
   {
     file: "Patient-1.png",
@@ -267,11 +267,22 @@ const GalleryPage = () => {
                   src={`/Images/${file}`}
                   controls
                   autoPlay
+                  defaultMuted
                   muted
                   loop
                   playsInline
                   preload="auto"
                   onLoadedData={() => markVideoLoaded(file)}
+                  onLoadedMetadata={(event) => {
+                    event.currentTarget.muted = true;
+                    event.currentTarget.volume = 0;
+                  }}
+                  onVolumeChange={(event) => {
+                    if (!event.currentTarget.muted || event.currentTarget.volume !== 0) {
+                      event.currentTarget.muted = true;
+                      event.currentTarget.volume = 0;
+                    }
+                  }}
                   className={`w-full h-[360px] object-cover transition-opacity duration-300 ${
                     loadedVideos[file] ? "opacity-100" : "opacity-0"
                   }`}
