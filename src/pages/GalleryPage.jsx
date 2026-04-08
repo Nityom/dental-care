@@ -27,16 +27,16 @@ const treatmentCases = [
   {
     file: "Image-13.png",
     category: "Prosthetics",
-    title: "Complete Dentures",
+    title: "Fixed Partial Dentures",
     description:
-      "Complete denture rehabilitation to restore missing teeth, support facial profile, and improve day-to-day chewing comfort.",
+      "Replacement of one or more missing teeth using fixed prosthetic teeth for better bite support, chewing comfort, and smile stability.",
   },
   {
     file: "Image-14.png",
     category: "Prosthetics",
-    title: "Smile Rehabilitation",
+    title: "Smile Designing",
     description:
-      "Customized prosthetic solutions to restore missing teeth, enhance smile aesthetics, and improve oral function for a confident new smile.",
+      "Personalized smile design focused on tooth shape, alignment, and shade to create a balanced, natural-looking, confident smile.",
   },
   {
     file: "Patient-1.png",
