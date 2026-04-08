@@ -11,16 +11,20 @@ const imageFiles = [
   "7image.jpeg",
   "Image-13.png",
   "Image-14.png",
-  "Patient-1.png",
-  "Patient-2.png",
-  "Patient-3.png",
-  "Patient-4.png",
+  "Pateint-1.png",
+  "Pateint-2.png",
+  "Pateint-3.png",
+  "Pateint-4.png",
   "Patient-5.png",
 ];
 
 const videoFiles = ["8image.mp4", "9image.mp4", "10image.mp4", "11image.mp4", "12image.mp4"];
 const photoFiles = imageFiles.filter(
-  (file) => !file.startsWith("Patient-") && file !== "Image-13.png" && file !== "Image-14.png"
+  (file) =>
+    !file.startsWith("Patient-") &&
+    !file.startsWith("Pateint-") &&
+    file !== "Image-13.png" &&
+    file !== "Image-14.png"
 );
 
 const treatmentCases = [
@@ -39,28 +43,28 @@ const treatmentCases = [
       "Personalized smile design focused on tooth shape, alignment, and shade to create a balanced, natural-looking, confident smile.",
   },
   {
-    file: "Patient-1.png",
+    file: "Pateint-1.png",
     category: "Prosthetics",
     title: "Anterior Mouth Rehabilitation",
     description:
       "Full removable prosthetic appliances crafted to replace missing teeth and restore oral comfort and function.",
   },
   {
-    file: "Patient-2.png",
+    file: "Pateint-2.png",
     category: "Implant Dentistry",
     title: "Full Mouth Rehabilitation",
     description:
       "Comprehensive restoration planning to improve chewing efficiency, smile balance, and long-term oral stability.",
   },
   {
-    file: "Patient-3.png",
+    file: "Pateint-3.png",
     category: "Smile Design",
     title: "Aesthetic Smile Makeover",
     description:
       "Customized aesthetic corrections focused on tooth proportion, alignment, and natural-looking smile enhancement.",
   },
   {
-    file: "Patient-4.png",
+    file: "Pateint-4.png",
     category: "Restorative",
     title: "Anterior Teeth Reconstruction",
     description:
