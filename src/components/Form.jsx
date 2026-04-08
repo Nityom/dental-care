@@ -1,5 +1,44 @@
 import React, { useState, useEffect } from "react";
-import { supabase } from "../supabaseClient";
+
+const CONVEX_HTTP_URL = import.meta.env.VITE_CONVEX_HTTP_URL;
+const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || "917771970889";
+
+const normalizeTimeTo24h = (timeValue) => {
+  if (!timeValue) return "";
+
+  const trimmed = String(timeValue).trim();
+  if (/^([01]\d|2[0-3]):[0-5]\d$/.test(trimmed)) {
+    return trimmed;
+  }
+
+  const match12h = trimmed.match(/^(\d{1,2}):([0-5]\d)\s*(AM|PM)$/i);
+  if (!match12h) return trimmed;
+
+  const rawHour = Number(match12h[1]);
+  const minute = match12h[2];
+  const meridiem = match12h[3].toUpperCase();
+
+  let hour = rawHour % 12;
+  if (meridiem === "PM") hour += 12;
+
+  return `${String(hour).padStart(2, "0")}:${minute}`;
+};
+
+const generateTimeSlots = () => {
+  const slots = [];
+  let totalMinutes = 9 * 60 + 30; // 09:30
+  const endMinutes = 20 * 60; // 20:00
+
+  while (totalMinutes <= endMinutes) {
+    const hour = Math.floor(totalMinutes / 60);
+    const minute = totalMinutes % 60;
+    slots.push(`${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`);
+    totalMinutes += 30;
+  }
+  return slots;
+};
+
+const TIME_SLOTS = generateTimeSlots();
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -24,27 +63,36 @@ const Form = () => {
     "Missing teeth", "Teeth Grinding"
   ];
 
-  const timeSlots = [
-    "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
-    "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM",
-    "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM",
-    "06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM", "08:00 PM"
-  ];
-
   useEffect(() => {
     const fetchBookedSlots = async () => {
-      if (!formData.date || !formData.doctor) return;
-      
-      const { data, error } = await supabase
-        .from("appointments")
-        .select("time")
-        .eq("date", formData.date)
-        .eq("doctor", formData.doctor);
+      if (!formData.date || !formData.doctor) {
+        setBookedSlots([]);
+        return;
+      }
 
-      if (error) {
+      if (!CONVEX_HTTP_URL) {
+        console.error("Missing VITE_CONVEX_HTTP_URL in environment");
+        return;
+      }
+
+      try {
+        const response = await fetch(`${CONVEX_HTTP_URL}/appointments/booked-slots`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            appointment_date: formData.date,
+            doctor_name: formData.doctor
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch booked slots: ${response.status}`);
+        }
+
+        const result = await response.json();
+        setBookedSlots((result.bookedSlots || []).map(normalizeTimeTo24h));
+      } catch (error) {
         console.error("Error fetching booked slots:", error);
-      } else {
-        setBookedSlots(data.map((slot) => slot.time));
       }
     };
 
@@ -84,29 +132,55 @@ const Form = () => {
     e.preventDefault();
     if (!validateForm()) return;
 
+    if (!CONVEX_HTTP_URL) {
+      alert("Convex HTTP URL is missing. Please set VITE_CONVEX_HTTP_URL in .env.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.from("appointments").insert([{ ...formData }]);
-      if (error) throw error;
+      const payload = {
+        appointment_date: formData.date,
+        appointment_time: normalizeTimeTo24h(formData.time),
+        dental_problem: formData.dental_problem,
+        doctor_name: formData.doctor,
+        full_name: formData.name,
+        phone: formData.phone,
+        notes: formData.email ? `Email: ${formData.email}` : undefined
+      };
 
-      const whatsappMessage = `*Appointment Booking Details*\nDoctor: ${formData.doctor}\nPatient Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nDate: ${formData.date}\nTime: ${formData.time}\nDental Problem: ${formData.dental_problem}`;
+      const response = await fetch(`${CONVEX_HTTP_URL}/appointments/book`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
 
-      const phoneNumber = "917771970889";
+      if (!response.ok) {
+        const errorBody = await response.json().catch(() => ({}));
+        throw new Error(errorBody.error || "Could not save appointment");
+      }
+
+      const whatsappMessage = `*Appointment Booking Details*\nDoctor: ${formData.doctor}\nPatient Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nDate: ${formData.date}\nTime: ${normalizeTimeTo24h(formData.time)}\nDental Problem: ${formData.dental_problem}`;
+
       const encodedMessage = encodeURIComponent(whatsappMessage);
-      
-      // ✅ iPhone-safe WhatsApp URL
-      const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
 
-      // iOS does NOT allow window.open; use direct redirect
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodedMessage}`;
+
+      // Mark slot as booked in the current UI state before redirect.
+      const normalizedSelectedTime = normalizeTimeTo24h(formData.time);
+      setBookedSlots((prevSlots) =>
+        prevSlots.includes(normalizedSelectedTime)
+          ? prevSlots
+          : [...prevSlots, normalizedSelectedTime]
+      );
+
       window.location.href = whatsappUrl;
 
-      // Fallback for iPhone when opened inside in-app browsers
       setTimeout(() => {
         alert("If WhatsApp did not open, please tap the three dots (•••) and select 'Open in Safari'.");
       }, 1500);
 
-      // Reset form
       setFormData({
         name: "", email: "", phone: "", doctor: "", date: "", time: "", dental_problem: ""
       });
@@ -115,7 +189,7 @@ const Form = () => {
 
     } catch (error) {
       console.error("Submission error:", error);
-      alert("Error sending appointment request.");
+      alert("Error sending appointment request. Please try again.");
     }
 
     setIsSubmitting(false);
@@ -204,14 +278,14 @@ const Form = () => {
             <select name="time" value={formData.time} onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3a3a3a]">
               <option value="">Select a Time</option>
-              {timeSlots.map((slot, index) => (
+              {TIME_SLOTS.map((slot, index) => (
                 <option key={index} value={slot} disabled={bookedSlots.includes(slot)}>
                   {slot} {bookedSlots.includes(slot) ? "(Booked)" : ""}
                 </option>
               ))}
             </select>
             {errors.time && <span className="text-red-500 text-xs">{errors.time}</span>}
-            {formData.date && bookedSlots.length === timeSlots.length && (
+            {formData.date && bookedSlots.length === TIME_SLOTS.length && (
               <p className="text-red-500 text-xs mt-1">All slots booked for this date.</p>
             )}
           </div>
