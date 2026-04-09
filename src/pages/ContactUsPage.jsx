@@ -36,7 +36,7 @@ const ContactUsPage = () => {
           </div>
           <div>
             <h3 className="text-xl font-semibold mb-2 text-gray-800">Email</h3>
-            <p className="text-gray-600">info@titaniumsmiles.in</p>
+            <p className="text-gray-600">titaniumsmiles.in@gmail.com</p>
           </div>
           <div>
             <h3 className="text-xl font-semibold mb-2 text-gray-800">Clinic Hours</h3>

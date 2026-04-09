@@ -10,7 +10,7 @@ const imageFiles = [
   "6image.jpeg",
   "7image.jpeg",
   "Image-13.png",
-  "Image-14.png",
+  "Image-14.jpg",
   "Pateint-1.png",
   "Pateint-2.png",
   "Pateint-3.png",
@@ -24,7 +24,7 @@ const photoFiles = imageFiles.filter(
     !file.startsWith("Patient-") &&
     !file.startsWith("Pateint-") &&
     file !== "Image-13.png" &&
-    file !== "Image-14.png"
+    file !== "Image-14.jpg"
 );
 
 const treatmentCases = [
@@ -36,18 +36,18 @@ const treatmentCases = [
       "Replacement of one or more missing teeth using fixed prosthetic teeth for better bite support, chewing comfort, and smile stability.",
   },
   {
-    file: "Image-14.png",
+    file: "Image-14.jpg",
     category: "Prosthetics",
-    title: "Smile Designing",
+    title: "Clear Aligner Therapy",
     description:
-      "Personalized smile design focused on tooth shape, alignment, and shade to create a balanced, natural-looking, confident smile.",
+      "Clear, custom-made aligners used in a staged plan to correct crowding, spacing, and bite alignment for a straighter smile.",
   },
   {
     file: "Pateint-1.png",
     category: "Prosthetics",
     title: "Anterior Mouth Rehabilitation",
     description:
-      "Full removable prosthetic appliances crafted to replace missing teeth and restore oral comfort and function.",
+      "Focused restoration of front teeth to improve smile aesthetics, speech clarity, and functional bite support.",
   },
   {
     file: "Pateint-2.png",
@@ -66,16 +66,16 @@ const treatmentCases = [
   {
     file: "Pateint-4.png",
     category: "Restorative",
-    title: "Anterior Teeth Reconstruction",
+    title: "Implant Supported Full Mouth Restoration",
     description:
-      "Targeted front-teeth reconstruction for improved appearance, bite support, and speech clarity.",
+      "Comprehensive full-arch rehabilitation using implant support to restore chewing strength, stability, and long-term oral function.",
   },
   {
     file: "Patient-5.png",
     category: "Fixed Prosthesis",
-    title: "Fixed Teeth Restoration",
+    title: "Implant Supported Over Denture",
     description:
-      "Precision fixed prosthetic treatment designed for durable function and a confident natural smile.",
+      "Removable overdenture anchored by implants for improved retention, comfort, and chewing efficiency compared with conventional dentures.",
   },
 ];
 
