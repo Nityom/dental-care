@@ -1,7 +1,34 @@
 import React, { useState, useEffect } from "react";
 
-const CONVEX_HTTP_URL = import.meta.env.VITE_CONVEX_HTTP_URL;
+const CONVEX_HTTP_URL =
+  import.meta.env.VITE_ADMIN_CONVEX_HTTP_URL ||
+  import.meta.env.VITE_ADMIN_CONVEX_URL ||
+  import.meta.env.VITE_CONVEX_HTTP_URL ||
+  "";
 const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || "917771970889";
+
+const getConvexHttpBaseUrl = (rawUrl) => {
+  if (!rawUrl) return "";
+
+  const trimmed = String(rawUrl).trim().replace(/\/+$/, "");
+  if (!trimmed) return "";
+
+  if (trimmed.includes(".convex.site") || trimmed.includes("/api")) {
+    return trimmed;
+  }
+
+  if (trimmed.includes(".convex.cloud")) {
+    return trimmed.replace(".convex.cloud", ".convex.site");
+  }
+
+  if (trimmed.includes(".convex.dev")) {
+    return trimmed.replace(".convex.dev", ".convex.site");
+  }
+
+  return trimmed;
+};
+
+const CONVEX_HTTP_BASE_URL = getConvexHttpBaseUrl(CONVEX_HTTP_URL);
 
 const normalizeTimeTo24h = (timeValue) => {
   if (!timeValue) return "";
@@ -70,13 +97,13 @@ const Form = () => {
         return;
       }
 
-      if (!CONVEX_HTTP_URL) {
-        console.error("Missing VITE_CONVEX_HTTP_URL in environment");
+      if (!CONVEX_HTTP_BASE_URL) {
+        console.error("Missing Convex HTTP base URL in environment");
         return;
       }
 
       try {
-        const response = await fetch(`${CONVEX_HTTP_URL}/appointments/booked-slots`, {
+        const response = await fetch(`${CONVEX_HTTP_BASE_URL}/appointments/booked-slots`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -132,8 +159,8 @@ const Form = () => {
     e.preventDefault();
     if (!validateForm()) return;
 
-    if (!CONVEX_HTTP_URL) {
-      alert("Convex HTTP URL is missing. Please set VITE_CONVEX_HTTP_URL in .env.");
+    if (!CONVEX_HTTP_BASE_URL) {
+      alert("Convex HTTP URL is missing. Please set the admin Convex URL in .env.");
       return;
     }
 
@@ -150,7 +177,7 @@ const Form = () => {
         notes: formData.email ? `Email: ${formData.email}` : undefined
       };
 
-      const response = await fetch(`${CONVEX_HTTP_URL}/appointments/book`, {
+      const response = await fetch(`${CONVEX_HTTP_BASE_URL}/appointments/book`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
