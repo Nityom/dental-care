@@ -1,6 +1,5 @@
 import React from 'react';
-import doctor1 from '../assets/doctors/doctor1.jpg';
-import doctor2 from '../assets/doctors/doctor2.jpg';
+// Images moved to public/doctors — use public URLs
 import { motion } from 'framer-motion';
 
 const TeamSection = () => {
@@ -10,14 +9,14 @@ const TeamSection = () => {
       title: "BDS, MDS (ORTHODONTICS)",
       specialization: "Orthodontics & Invisible Braces",
       experience: "15+ Years Experience",
-      img: doctor1,
+      img: '/doctors/doctor1.jpg',
     },
     {
       name: "Dr. Sindhuja Pandey",
       title: "BDS, PG Diploma in Facial Cosmetology",
       specialization: "Cosmetic & General Dentistry",
       experience: "7+ Years Experience",
-      img: doctor2,
+      img: '/doctors/doctor2.jpg',
     },
   ];
 

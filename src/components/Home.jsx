@@ -9,7 +9,10 @@ export default function Home() {
   useEffect(() => {
     const checkIsMobile = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", checkIsMobile);
-    return () => window.removeEventListener("resize", checkIsMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkIsMobile);
+    };
   }, []);
 
   return (
@@ -89,6 +92,8 @@ export default function Home() {
             />
           </motion.div>
         </div>
+
+        {/* Blog embed removed from here; it's mounted globally before Footer */}
       </div>
     </section>
   );

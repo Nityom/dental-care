@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 
@@ -26,6 +26,26 @@ const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 export default function App() {
+  useEffect(() => {
+    const mountBlogEmbed = () => {
+      const container = document.getElementById('blogforge-recent-posts');
+      if (!container) return;
+      if (document.getElementById('blogforge-embed-script')) return;
+      const script = document.createElement('script');
+      script.src = 'https://blog-saas-five.vercel.app/api/embed/titanium-smiles/recent-posts.js';
+      script.id = 'blogforge-embed-script';
+      script.async = true;
+      container.appendChild(script);
+    };
+
+    // Try to mount once the app has rendered
+    setTimeout(mountBlogEmbed, 300);
+
+    return () => {
+      const existing = document.getElementById('blogforge-embed-script');
+      if (existing) existing.remove();
+    };
+  }, []);
   return (    <HelmetProvider>
       <Router>
         <ScrollToTop />
@@ -53,6 +73,11 @@ export default function App() {
           </Routes>
         </Suspense>
         <ScrollToTopButton /> {/* ⬅️ Scroll to top button added */}
+        {/* Blog Recent Posts Embed (mounted before footer) */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mt-12">
+          <h2 className="text-2xl font-semibold text-center mb-4">Latest From Our Blog</h2>
+          <div id="blogforge-recent-posts" className="mx-auto"></div>
+        </div>
         <Footer />
         <WebsiteFooter />
       </Router>
