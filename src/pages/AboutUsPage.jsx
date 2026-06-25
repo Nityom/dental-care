@@ -3,8 +3,8 @@ import { FaTrophy, FaAward, FaMedal } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import aboutImage1 from "../assets/about/img1.jpg";
 import aboutImage2 from "../assets/about/img2.jpg";
-import aboutImage3 from "../assets/about/img3.jpg";
-import aboutImage4 from "../assets/about/img4.jpg";
+const aboutImage3 = aboutImage1;
+const aboutImage4 = aboutImage2;
 
 
 const AboutUsPage = () => {
