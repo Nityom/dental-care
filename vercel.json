@@ -1,8 +1,8 @@
 {
   "routes": [
     { "src": "/sitemap.xml", "dest": "/api/sitemap.xml" },
-    { "src": "/blog", "dest": "https://blog-saas-five.vercel.app/blog/titaniumsmiles" },
-    { "src": "/blog/(.*)", "dest": "https://blog-saas-five.vercel.app/blog/titaniumsmiles/$1" },
+    { "src": "/blog", "dest": "https://blog-saas-five.vercel.app/blog/titanium-smiles" },
+    { "src": "/blog/(.*)", "dest": "https://blog-saas-five.vercel.app/blog/titanium-smiles/$1" },
     { "src": "/_next/(.*)", "dest": "https://blog-saas-five.vercel.app/_next/$1" },
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
