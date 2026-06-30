@@ -27,7 +27,7 @@ const Navbar = () => {
           <Link to="/about" className="relative hover:text-[#3a3a3a] transition-all duration-300 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#3a3a3a] after:left-0 after:-bottom-2 after:transition-all hover:after:w-full">About Us</Link>
           <Link to="/services" className="relative hover:text-[#3a3a3a] transition-all duration-300 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#3a3a3a] after:left-0 after:-bottom-2 after:transition-all hover:after:w-full">Services</Link>
           <Link to="/gallery" className="relative hover:text-[#3a3a3a] transition-all duration-300 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#3a3a3a] after:left-0 after:-bottom-2 after:transition-all hover:after:w-full">Gallery</Link>
-          <a href="https://blog.titaniumsmiles.in" target="_blank" rel="noopener noreferrer" className="relative hover:text-[#3a3a3a] transition-all duration-300 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#3a3a3a] after:left-0 after:-bottom-2 after:transition-all hover:after:w-full">Blog</a>
+          <a href="/blog" className="relative hover:text-[#3a3a3a] transition-all duration-300 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#3a3a3a] after:left-0 after:-bottom-2 after:transition-all hover:after:w-full">Blog</a>
           <Link to="/contact" className="relative hover:text-[#3a3a3a] transition-all duration-300 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#3a3a3a] after:left-0 after:-bottom-2 after:transition-all hover:after:w-full">Contact Us</Link>
         </nav>
 
@@ -71,7 +71,7 @@ const Navbar = () => {
             <Link to="/services" onClick={closeMenu} className="text-4xl font-bold text-[#1e1b1e] hover:text-[#3a3a3a] transition-all duration-300 hover:-translate-y-1">Services</Link>
             <Link to="/gallery" onClick={closeMenu} className="text-4xl font-bold text-[#1e1b1e] hover:text-[#3a3a3a] transition-all duration-300 hover:-translate-y-1">Gallery</Link>
             <Link to="/about" onClick={closeMenu} className="text-4xl font-bold text-[#1e1b1e] hover:text-[#3a3a3a] transition-all duration-300 hover:-translate-y-1">About Us</Link>
-            <a href="https://blog.titaniumsmiles.in" onClick={closeMenu} target="_blank" rel="noopener noreferrer" className="text-4xl font-bold text-[#1e1b1e] hover:text-[#3a3a3a] transition-all duration-300 hover:-translate-y-1">Blog</a>
+            <a href="/blog" onClick={closeMenu} className="text-4xl font-bold text-[#1e1b1e] hover:text-[#3a3a3a] transition-all duration-300 hover:-translate-y-1">Blog</a>
             <Link to="/contact" onClick={closeMenu} className="text-4xl font-bold px-8 py-2 rounded-full bg-gradient-to-r from-[#3a3a3a] to-[#666] text-white hover:shadow-lg transition-all duration-300 hover:-translate-y-1">Contact Us</Link>
           </div>
         </div>
