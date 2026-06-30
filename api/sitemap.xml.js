@@ -1,21 +1,26 @@
 /**
- * Dynamic Sitemap Generator
- * Accessible at: /sitemap.xml
- * Includes all static pages for both the apex domain and www subdomain.
+ * Dynamic Sitemap — titaniumsmiles.in
+ * Includes static pages + all published blog posts from the blog SaaS.
  */
 
-const BASE_URL = 'https://titaniumsmiles.in';
-const WWW_URL  = 'https://www.titaniumsmiles.in';
+const BASE_URL    = 'https://titaniumsmiles.in';
+const CONVEX_URL  = 'https://scrupulous-pig-245.convex.cloud';
+const CLINIC_SLUG = 'titanium-smiles';
 
-const routes = [
+const STATIC_ROUTES = [
   { path: '/',         priority: '1.0', changefreq: 'weekly'  },
   { path: '/services', priority: '0.9', changefreq: 'monthly' },
   { path: '/gallery',  priority: '0.8', changefreq: 'monthly' },
   { path: '/about',    priority: '0.8', changefreq: 'monthly' },
   { path: '/contact',  priority: '0.7', changefreq: 'monthly' },
+  { path: '/blog',     priority: '0.9', changefreq: 'daily'   },
 ];
 
-function buildUrl(loc, { priority, changefreq }, lastmod) {
+function toDate(ts) {
+  return new Date(ts).toISOString().split('T')[0];
+}
+
+function urlEntry(loc, priority, changefreq, lastmod) {
   return `  <url>
     <loc>${loc}</loc>
     <lastmod>${lastmod}</lastmod>
@@ -24,33 +29,58 @@ function buildUrl(loc, { priority, changefreq }, lastmod) {
   </url>`;
 }
 
-export default function handler(req, res) {
-  const lastmod = new Date().toISOString().split('T')[0];
+async function convexQuery(functionPath, args) {
+  const res = await fetch(`${CONVEX_URL}/api/query`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ path: functionPath, args, format: 'json' }),
+  });
+  if (!res.ok) throw new Error(`Convex ${functionPath} HTTP ${res.status}`);
+  const data = await res.json();
+  if (data.status !== 'success') throw new Error(`Convex error: ${JSON.stringify(data)}`);
+  return data.value;
+}
 
-  const urlEntries = [
-    ...routes.map((route) => buildUrl(`${BASE_URL}${route.path}`, route, lastmod)),
-    ...routes.map((route) => buildUrl(`${WWW_URL}${route.path}`, route, lastmod)),
-  ];
+export default async function handler(req, res) {
+  const today = toDate(Date.now());
+
+  const entries = STATIC_ROUTES.map(r =>
+    urlEntry(`${BASE_URL}${r.path}`, r.priority, r.changefreq, today)
+  );
+
+  try {
+    const clinic = await convexQuery('clinics:getBySlug', { slug: CLINIC_SLUG });
+
+    if (clinic) {
+      const posts = await convexQuery('posts:getPublishedByClinic', { clinicId: clinic._id });
+
+      const sorted = [...posts].sort(
+        (a, b) => (b.publishedAt ?? b.createdAt) - (a.publishedAt ?? a.createdAt)
+      );
+
+      for (const post of sorted) {
+        entries.push(urlEntry(
+          `${BASE_URL}/blog/${CLINIC_SLUG}/${post.slug}`,
+          '0.8',
+          'weekly',
+          toDate(post.updatedAt ?? post.publishedAt ?? post.createdAt)
+        ));
+      }
+    }
+  } catch (err) {
+    console.error('[sitemap] error fetching posts:', err);
+    // static pages still returned on error
+  }
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-          http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-${urlEntries.join('\n')}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries.join('\n')}
 </urlset>`;
 
   res
     .setHeader('Content-Type', 'application/xml; charset=utf-8')
-    .setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate=3600')
+    .setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400')
     .status(200)
     .send(sitemap);
 }
 
-const routes = [
-  { path: '/',         priority: '1.0', changefreq: 'weekly'  },
-  { path: '/services', priority: '0.9', changefreq: 'monthly' },
-  { path: '/gallery',  priority: '0.8', changefreq: 'monthly' },
-  { path: '/about',    priority: '0.8', changefreq: 'monthly' },
-  { path: '/contact',  priority: '0.7', changefreq: 'monthly' },
-];
